@@ -1,0 +1,255 @@
+<template>
+  <DataTable
+    lazy
+    paginator
+    v-model:value="persons"
+    class="p-datatable-gridlines"
+    :rows="40"
+    :totalRecords="pagination.pageCount * 40"
+    dataKey="id"
+    :rowHover="true"
+    filterDisplay="menu"
+    :loading="loading"
+    responsiveLayout="scroll"
+    @page="changePage($event)"
+    style="min-height: calc(100vh - 276px);"
+  >
+    <template #header>
+      <div class="flex justify-content-between flex-column sm:flex-row">
+        <span class="p-input-icon-left mr-2">
+          <i class="pi pi-search"/>
+          <InputText
+            v-model="search"
+            placeholder="Поиск по id/ФИО"
+          />
+        </span>
+        <Button
+          type="button"
+          label="Поиск"
+          class="p-button-outlined"
+          @click.prevent="getPersons"
+        />
+        <Button
+          label="Добавить автора"        
+          class="ml-auto"
+          icon="pi pi-plus"
+          severity="success"
+          @click.prevent="newPerson"
+        />
+      </div>
+    </template>
+    <template v-if="isEmpty" #empty>Авторы не найдены</template>
+    <template #loading>
+      <i class="pi pi-spin pi-spinner" style="font-size: 5rem"></i>
+    </template>
+    <Column style="min-width: 4rem; width: 4rem">
+      <template #body="{ data }">
+        <Button
+          severity="secondary"
+          text
+          rounded
+          aria-label="Найстройки"
+          @click.prevent="getPerson(data.id)"
+          style="padding: 7px;"
+        >
+          <i class="pi pi-user-edit" style="font-size: 1.5rem;"/>
+        </Button>
+      </template>
+    </Column>
+    <Column field="id" header="ID персоны" style="min-width: 4rem; width: 8rem" />
+    <Column field="name" header="ФИО автора" style="min-width: 10rem" />
+    <Column header="Активность" style="min-width: 4rem; width: 4rem">
+      <template #body="{ data }">
+        {{ data.active ? 'Да' : 'Нет' }}
+      </template>
+    </Column>
+  </DataTable>
+
+  <Dialog
+    v-model:visible="isVisible"
+    :breakpoints="{ '960px': '75vw' }"
+    :style="{ width: '60vw' }"
+    :modal="true"
+    :dismissableMask="true"
+  >
+    <template #header>
+      <div v-if="loadingForm"></div>
+      <div v-else>
+        <h5
+          v-if="personData.id === 0"
+          class="m-0">
+          Карточка новой персоны
+        </h5>
+        <h5
+          v-else
+          class="m-0">
+          Карточка персоны {{ personData.id }} (ID)
+        </h5>
+      </div>
+    </template>
+    <div v-if="!loadingForm">
+      <PersonForm
+        :person-data="personData"
+        @save-complete="personSaved"
+        @save-error="personSaved"
+        @close-person-form="closeForm"
+        @save-temp-data="saveTempData"
+      />
+    </div>
+    <div v-else>
+      <div class="flex align-items-center justify-content-center" style="min-height: calc(100vh - 194px);">
+        <i class="pi pi-spin pi-spinner" style="font-size: 5rem"></i>
+      </div>
+    </div>
+  </Dialog>
+</template>
+
+<script>
+import axios from 'axios'
+import PersonForm from './PersonForm.vue'
+
+export default {
+  name: 'Persons',
+  components: {
+    PersonForm
+  },
+  data() {
+    return {
+      persons: [],
+      loading: false,
+      loadingForm: false,      
+      page: 1,
+      pagination: [],
+      isEmpty: true,
+      search: '',
+      isVisible: false,
+      personData: {},
+      personDataTemplate: {
+        id: 0,
+        name: "",
+        nameFull: "",
+        nameFullRu: "",
+        active: 1,
+        alternativeName: "",
+        description: "",
+        cover: "",
+        labirintId: 0,
+        seoTitle: "",
+        seoMetaKeywords: "",
+        seoMetaDescription: ""
+      },
+      isLastEventNew: false
+    }
+  },
+  beforeMount() {
+    if (!_.isEmpty(this.$route.query.page)) {
+      this.page = this.$route.query.page
+    }
+
+    this.personData = {...this.personDataTemplate}
+    this.getPersons()
+  },
+  methods: {
+    showSuccess(message) {
+      this.$toast.add({severity: 'success', summary: 'Успех', detail: message, life: 3000});
+    },
+    showError(message) {
+      this.$toast.add({severity: 'error', summary: 'Ошибка', detail: message, life: 3000});
+    },
+    getPersons() {
+      let url = '/admin/backend/person'
+      const str = this.search.replace(/&/g, "%26").replace(/\+/g, "%2B")
+
+      url += this.search == '' ? '' : '?search=' + str
+      this.loading = true
+
+      axios
+        .get(url, {
+          params: {
+            page: this.page
+          }
+        })
+        .then(response => {
+          if (!_.isEmpty(response.data.data.persons)) {
+            this.persons = [...response.data.data.persons]
+            this.pagination = response.data.data.pagination
+            this.isEmpty = false
+          } else {
+            this.persons = []
+          }
+          this.loading = false
+        })
+        .catch(error => {
+          this.loading = false
+          this.showError('Список персон не получен, ' + error)
+        })
+    },
+    changePage(event) {
+      this.page = ++event.page
+      this.getPersons()
+    },
+    newPerson() {
+      if (!this.isLastEventNew) {
+        this.personData = {...this.personDataTemplate}        
+      }
+
+      this.isLastEventNew = true
+      this.showForm()
+    },
+    showForm() {
+      this.isVisible = true
+    },
+    saveTempData(person) {
+      this.personData = {...person}
+    },    
+    closeForm() {
+      this.isVisible = false
+    },
+    personSaved({status, error = ''}) {
+      this.closeForm()
+
+      if (status) {
+        this.showSuccess('Пользователь  сохранен успешно!')
+      } else {
+        this.showError(`Не удалось сохранить пользователя ${error}`)
+      }
+
+      this.getPersons()
+    },
+    getPerson(id) {
+      this.isLastEventNew = false
+      this.showForm()
+
+      if (this.personData.id === id) return
+
+      this.loadingForm = true
+      const url = '/admin/backend/person'
+
+      axios
+        .get(url, {
+          params: {
+            id
+          }
+        })
+        .then(response => {
+          if (!_.isEmpty(response.data.data.persons)) {
+            this.personData = {...response.data.data.persons[0]}
+          } else {
+            this.closeForm()
+          }
+        })
+        .finally(() => {
+          this.loadingForm = false
+        })
+        .catch((error) => {
+          this.closeForm()
+          throw new Error('Ошибка, ' + error )
+        })
+    }
+  }
+}
+</script>
+
+<style>
+
+</style>

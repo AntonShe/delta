@@ -1,0 +1,184 @@
+.filter {
+    width: 100%;
+    margin-bottom: 30px;
+    display: flex;
+    flex-direction: column;
+
+    &__title {
+        margin-bottom: 10px;
+        @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-900);
+    }
+
+    &__input-wrap {
+        max-height: 204px;
+        height: 100%;
+        overflow: hidden;
+    }
+
+    &__input-block{
+        position: relative;
+        display: flex;
+        margin-bottom: 10px;
+    }
+
+    &__checkbox-input {
+        position: absolute;
+        z-index: -1;
+        opacity: 0;
+
+        &:checked+label::before {
+            background: get-icon('checkbox', $Red-400) no-repeat center;
+            border: none;
+        }
+    }
+
+    &__checkbox-label {
+        display: inline-flex;
+        align-items: center;
+        user-select: none;
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+        transition: color .2s ease-in-out;
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        &::before {
+            content: '';
+            display: inline-block;
+            flex-shrink: 0;
+            vertical-align: sub;
+            margin-right: 8px;
+            width: 20px;
+            height: 20px;
+            border: 1px solid $Zinc-400;
+            @include _border-radius(6px);
+            transition: border-color .2s ease-in-out;
+        }
+    }
+
+    &__checkbox-text {
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -moz-box;
+        display: -webkit-box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        line-clamp: 1;
+        -webkit-line-clamp: 1;
+    }
+
+    &__alphabet {
+        display: flex;
+        flex-wrap: wrap;
+        column-gap: 4px;
+        row-gap: 4px;
+
+        &-input {
+            position: absolute;
+            z-index: -1;
+            opacity: 0;
+
+            &:hover+label,
+            &:checked+label {
+                background-color: #ECB8AC;
+            }
+        }
+
+        &-label {
+            width: 34px;
+            height: 34px;
+            padding: 5px;
+            @include _border-radius(8px);
+            user-select: none;
+            text-align: center;
+            @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-900);
+            background-color: #FAEDEA;
+            cursor: pointer;
+        }
+    }
+
+    &__btn {
+        width: max-content;
+    }
+}
+
+.filters {
+    width: 100%;
+
+    @media (max-width: $screen-md-l) {
+        padding: 10px 15px 40px 15px;
+    }
+
+    &__title {
+        margin: 0;
+        @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+    }
+
+    &__wrap {
+        max-width: 252px;
+        width: 100%;
+        margin-right: 20px;
+
+        &.active {
+            display: block;
+        }
+
+        @media (max-width: $screen-xl) {
+            max-width: 230px;
+            margin-right: 18px;
+        }
+
+        @media (max-width: $screen-md-l) {
+            display: none;
+            position: fixed;
+            top: 0;
+            left: 0;
+            right: 0;
+            z-index: 101;
+            background-color: white;
+            max-width: unset;
+            overflow: scroll;
+            height: 100vh;
+        }
+    }
+
+    &__header-mobile {
+        display: none;
+        padding: 10px 15px;
+        height: 66px;
+        align-items: center;
+        background-color: $Red-25;
+
+        @media (max-width: $screen-md-l) {
+            display: flex;
+        }
+    }
+
+    &__button {
+        width: 100%;
+
+        &.button-red {
+            width: 100%;
+            padding: 9px;
+        }
+
+        &:not(:last-child) {
+            margin-bottom: 10px;
+        }
+
+        &_grey {
+            @include _button-reset(9px,$Zinc-100, none);
+            @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-400);
+
+            &:hover,&:active{
+                color: $Zinc-900;
+            }
+
+            &.active {
+                color: $Zinc-900;
+            }
+        }
+    }
+}

@@ -1,0 +1,68 @@
+.input-autocomplete {
+    height: 44px;
+    width: 100%;
+    padding: 9px 8px 9px 12px;
+    border-radius: 10px;
+    border: 1px solid $Zinc-400;
+    background: $white;
+    @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+
+    &__container {
+        position: relative;
+    }
+
+    &__close {
+        position: absolute;
+        top: 12px;
+        right: 8px;
+        width: 20px;
+        height: 20px;
+        background-size: contain;
+        cursor: pointer;
+        background: get-icon('close', $Zinc-400) no-repeat;
+    }
+
+    &__list {
+        position: absolute;
+    }
+
+    &::placeholder {
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-500);
+    }
+
+    &:focus,
+    &:focus-visible {
+        border: 1px solid $Red-200;
+        outline: none;
+    }
+}
+
+.ui-autocomplete {
+    display: flex;
+    flex-direction: column;
+    gap: 2px;
+    max-height: 232px;
+    max-width: 100%;
+    width: 100%;
+    padding: 4px;
+    border-radius: 8px;
+    background-color: $white;
+    box-shadow: 0 15px 20px 0 rgba(0, 0, 0, 0.05);
+    list-style: none;
+    overflow: hidden;
+    z-index: 100;
+}
+
+.ui-menu-item {
+    width: 100%;
+    padding: 9px 16px;
+    @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+    cursor: pointer;
+    transition: 0.3s;
+    border-radius: 8px;
+
+    &:hover,
+    &:focus {
+        background-color: $Red-50;
+    }
+}

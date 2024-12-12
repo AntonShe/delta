@@ -1,0 +1,37 @@
+.dropdown {
+  position: absolute;
+  top: 100%;
+  left: 0;
+  width: 100%;
+
+  background-color: $white;
+  box-shadow: 0px 15px 20px rgba(0, 0, 0, 0.05);
+  z-index: 10;
+  transition: backgroung .2s ease-in-out;
+  overflow: hidden;
+
+  @media (min-width: $screen-xxl) {
+    width: 96%;
+    left: 14px;
+  }
+
+  &__item {
+    padding: 5px 16px;
+    @include _border-radius(8px);
+    @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+
+    &:hover {
+      background-color: $Red-50;
+    }
+
+    &:active {
+      background-color: $Red-200;
+    }
+  }
+}
+
+.dropdown__city {
+  margin: 0 0 12px 46px;
+  padding-left: 32px;
+  background: get-icon('location', $Zinc-900) no-repeat left 50%;
+}

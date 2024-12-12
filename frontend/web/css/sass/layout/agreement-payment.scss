@@ -1,0 +1,59 @@
+.public-offer,
+.user-agreement,
+.payment-refund {
+    &__flex-block {
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    &__button-back {
+        margin: 0 10px 0 14px;
+    }
+
+    &__title {
+        @include _typography-ext(fn, 30, 36, 600, ls, $Zinc-900);
+        margin: 0;
+
+        @media (max-width: $screen-md) {
+            @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+        }
+    }
+
+    &__subtitle {
+        @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+        margin: 0 0 10px;
+
+        @media (max-width: $screen-md) {
+            @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-900);
+        }
+
+        & span {
+            opacity: 0.6;
+        }
+    }
+
+    &__container-text {
+        margin: 0 0 20px;
+        max-width: 1065px;
+    }
+
+    &__text {
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+        margin: 0;
+
+    }
+
+    &__text-list {
+        list-style-type: none;
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+    }
+
+    &__text-link {
+        color: $Indigo-400;
+        @include _link;
+
+        &:hover {
+            color: $Indigo-600;
+        }
+    }
+}

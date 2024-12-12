@@ -1,0 +1,148 @@
+.contacts-page {
+    &__container {
+        background-color: $Zinc-50;
+        padding-bottom: 1px;
+
+        @media (max-width: $screen-xl) {
+            background: none;
+        }
+    }
+    &__flex-block {
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    &__button-back {
+        margin: 0 4px 0 0;
+        display: none;
+
+        @media (max-width: $screen-md) {
+            display: block;
+        }
+    }
+    &__title {
+        @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+    }
+
+    &__contact-list {
+        display: flex;
+        list-style-type: none;
+        margin-bottom: 50px;
+        max-width: 1204px;
+
+        @media (max-width: $screen-xl) {
+            margin-bottom: 40px;
+        }
+
+        @media (max-width: $screen-md) {
+            flex-direction: column;
+        }
+    }
+
+    &__contact-item {
+        margin-right: 20px;
+        width: 100%;
+        height: 93px;
+        background-color: $white;
+        padding: 10px;
+        box-shadow: inset 0px -1px 0px $Zinc-200, inset 0px 1px 0px $Zinc-200;
+
+        @media (max-width: $screen-xl) {
+            margin-right: 18px;
+        }
+
+        &:last-child {
+            margin-right: 0
+        }
+    }
+
+    &__contact-name {
+        @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-900);
+
+        @media (max-width: $screen-md) {
+            @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-900);
+        }
+    }
+
+    &__link {
+        display: flex;
+        margin-top: 13px;
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+        @include _link;
+
+        &::before {
+            content: '';
+            display: block;
+            margin-right: 6px;
+            background: get-icon('email', $Zinc-900);
+            width: 24px;
+            height: 24px;
+            @include _link;
+        }
+
+        &:hover {
+            color: $Indigo-600;
+        }
+    }
+
+    &__link-tel {
+        &::before {
+            background: get-icon('tel', $Zinc-900);
+        }
+
+        &:hover::before {
+            background: get-icon('tel', $Indigo-600);
+        }
+    }
+
+    &__link-mail {
+        &::before {
+            background: get-icon('email', $Zinc-900);
+        }
+
+        &:hover::before {
+            background: get-icon('email', $Indigo-600);
+        }
+    }
+
+    &__requisites-list {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+        background: $white;
+        width: 796px;
+
+        @media (max-width: $screen-xl) {
+            width: 100%;
+        }
+    }
+
+    &__requisites-item {
+        display: flex;
+        align-items: center;
+        box-shadow: inset 0px -1px 0px $Zinc-200;
+        padding: 9px 10px;
+
+        &:last-child {
+            padding: 12px 10px;
+            box-shadow: none;
+        }
+
+        @media (max-width: $screen-md) {
+            padding: 12px 10px;
+        }
+    }
+
+    &__requisites-name {
+        width: 282px;
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-600);
+
+        @media (max-width: $screen-md) {
+            display: none;
+        }
+    }
+
+    &__requisites-text {
+        @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-900);
+    }
+}

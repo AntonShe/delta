@@ -1,0 +1,233 @@
+.mini-card {
+  width: 100%;
+  height: 538px;
+  padding: 10px 10px 16px 10px;
+  flex-direction: column;
+  box-shadow: 0 0 12px 1px rgba(0, 0, 0, 0.1);
+  border-radius: 10px;
+  transition: box-shadow .2s ease-in-out;
+
+  @media (max-width: $screen-xl-l) {
+    height: 526px;
+  }
+
+  @media (max-width: $screen-md) {
+    padding-bottom: 14px;
+    width: 100%;
+    height: 100%;
+  }
+
+  &:hover {
+    @include _border-radius(8px);
+    box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.1);
+
+    .mini-card__top {
+      border-color: transparent;
+    }
+  }
+
+  &__top {
+    position: relative;
+    padding: 0;
+    margin-bottom: 8px;
+    width: 100%;
+    height: 292px;
+    @include _border-radius(8px);
+    transition: border-color .2s ease-in-out;
+
+    @media (max-width: $screen-xl-l) {
+      height: 279px;
+    }
+
+    @media (max-width: $screen-md) {
+      margin-bottom: 6px;
+      height: 216px;
+      flex-shrink: 0;
+    }
+  }
+
+  &__top-link {
+    height: 292px;
+    display: block;
+
+    @media (max-width: $screen-xl-l) {
+      height: 279px;
+    }
+
+    @media (max-width: $screen-md) {
+      height: 216px;
+    }    
+  }
+
+  &__img {
+    width: 100%;
+    height: 100%;
+    object-fit: contain;
+
+    &--opacity {
+      opacity: 0.4;
+    }
+  }
+
+  &__bottom {
+    flex-direction: column;
+    height: 100%;
+  }
+
+  &__title,
+  &__autor {
+    overflow: hidden;
+    text-overflow: ellipsis;
+    display: -moz-box;
+    display: -webkit-box;
+    -moz-box-orient: vertical;
+    -webkit-box-orient: vertical;
+    box-orient: vertical;
+  }
+
+  &__title {
+    margin-top: 10px;
+    line-clamp: 2;
+    -webkit-line-clamp: 2;
+    @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+    @include  _hover(bc, $Indigo-400, bgi, bgc);
+
+    @media (max-width: $screen-md) {
+      margin-top: 8px;
+      line-clamp: 2;
+      -webkit-line-clamp: 2;
+    }
+  }
+
+  &__autor {
+    margin-top: 2px;
+    line-clamp: 1;
+    -webkit-line-clamp: 1;
+    @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-400);
+  }
+
+  &__price {
+    align-items: center;
+    width: 100%;
+
+    @media (max-width: $screen-md) {
+      justify-content: flex-start;
+    }
+
+    &-new {
+      margin-right: 8px;
+      @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+
+      @media (max-width: $screen-md) {
+        margin-right: 6px;
+        @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-900);
+      }
+    }
+
+    &-old {
+      text-decoration: line-through;
+      @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-400);
+
+      @media (max-width: $screen-md) {
+        @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-400);
+      }
+    }
+  }
+
+  &__rating-wrapper {
+    margin-top: 8px;
+    display: flex;
+    align-items: center;
+
+    @media (min-width: $tablet-width) {
+      margin-top: 10px;
+    }    
+
+    .mini-card__star {
+      width: 18px;
+      height: 18px;
+      background: get-icon('star', $Red-400) no-repeat center center;
+      margin-right: 4px;
+    }
+
+    .mini-card__number {
+      @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-400);
+    }    
+  }
+
+  &__notsale {
+    margin-top: auto;
+    @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+
+    @media (max-width: $screen-md) {
+      margin-top: 16px;
+      @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-900);
+    }
+  }
+
+  &__button {
+    margin-top: 20px;
+    width: 100%;
+
+    @media (max-width: $screen-md) {
+      margin-top: 14px;
+    }
+
+    &-count {
+      @include _border-radius(8px);
+      justify-content: space-between;
+
+      &.button-tocart {
+        background-color: $Red-300;
+
+        @media (min-width: $screen-xl) {
+          padding: 8px 54px;
+        }
+      }
+
+      &_minus {
+        width: 24px;
+        height: 24px;
+        background: get-icon('minus', $Zinc-900) no-repeat center;
+        @include _button-reset(0, bgc, b);
+
+        &.disable {
+          background: get-icon('minus', $Zinc-400) no-repeat center;
+          display: block;
+          cursor: default;
+        }
+      }
+
+      &-input {
+        input {
+          @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-900);
+        }
+      }
+
+      &_plus {
+        width: 24px;
+        height: 24px;
+        background: get-icon('plus', $Zinc-900) no-repeat center;
+        @include _button-reset(0, bgc, b);
+
+        &.disable {
+          background: get-icon('plus', $Zinc-400) no-repeat center;
+          display: block;
+          cursor: default;
+        }
+      }
+    }
+  }
+
+  &__person-wrap {
+    margin-top: 4px;
+    white-space: nowrap;
+    overflow-x: hidden;
+    text-overflow: ellipsis;
+    color: $Zinc-400;
+  }
+
+  &__person-link {
+    @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-400);
+  }
+}

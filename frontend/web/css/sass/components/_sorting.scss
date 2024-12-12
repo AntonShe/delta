@@ -1,0 +1,34 @@
+.sorting {
+
+    @media (min-width: $screen-xl) {
+        display: flex;
+        align-items: flex-end;
+    }
+
+    &__list {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 20px;
+
+        @media (max-width: $screen-md-l) {
+            gap: 10px;
+        }
+    }
+
+    &__item {
+        height: 20px;
+        font-weight: 600;
+        font-size: 14px;
+        line-height: 20px;
+        cursor: pointer;
+
+        &:hover {
+            color: $Red-400;
+        }
+
+        &_active {
+            color: $Red-400;
+            cursor: default;
+        }
+    }
+}

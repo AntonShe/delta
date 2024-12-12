@@ -1,0 +1,187 @@
+/* ===== Миксин текстовых стилей START ===== */
+@mixin _typography-ext($font-name: null, $font-size: null, $line-height: null, $font-weight: null, $letter-spacing: null, $font-color: null) {
+
+    @if $font-name != 'fn'{font-family: $font-name;}
+    @if $font-size != 'fs'{font-size: $font-size * 1px;}
+    @if $line-height != 'lh'{line-height: $line-height * 1px;}
+    @if $font-weight != 'fw' {font-weight: $font-weight;}
+    @if $letter-spacing != 'ls'{letter-spacing: $letter-spacing * 1em;}
+    @if $font-color != 'fc'{color: $font-color;}
+}
+
+/* Подключение
+
+@include _typography-ext(fn, fs, lh, fw, ls, fc);
+
+! Без единиц измерения
+
+fn - font-family (font-name) - название шрифта
+fs - font-size               - размер шрифта
+lh - line-height             - межстрочный отступ
+fw - font-weight             - начертание шрифта
+ls - letter-spacing          - межбуквенный отступ
+fc - color                   - цвет текста */
+/* ===== Миксин текстовых стилей END ===== */
+
+/* ===== Миксин ховер START ===== */
+
+@mixin _hover( $border-color: null, $text-color: null, $bg-icon: null, $bg-color: null) {
+
+    &:hover:not(:focus-visible) {
+        @if $border-color != 'bc'{border-color: $border-color;}
+        @if $text-color != 'tc'{color: $text-color;}
+        @if $bg-icon != 'bgi' {background: $bg-icon;}
+        @if $bg-color != 'bgc'{background-color: $bg-color;}
+    }
+}
+
+/* Подключение
+@include  _hover(bc, tc, bgi, bgc);
+*/
+
+/* ===== Миксин ховер END ===== */
+
+@mixin _border-radius($radius) {        // Префиксы для:
+    -webkit-border-radius: $radius;    // Chrome и Safari
+    -moz-border-radius: $radius;    // Firefox
+    -ms-border-radius: $radius;    // Internet Explorer
+    -o-border-radius: $radius;    // Opera
+    border-radius: $radius;    // Стандартный CSS
+}
+// Пример использования миксина border-radius после его создания
+//  @include _border-radius(10px);
+
+
+/* ===== Миксин btn START ===== */
+@mixin _button-reset($padding: null, $bg-color: null, $border: null) {
+    -webkit-appearance: none;
+    -moz-appearance: none;
+    appearance: none;
+    @include _border-radius(8px);
+    text-align: center;
+    white-space: nowrap;
+    cursor: pointer;
+    transition-property: background-color, border, border-color, color, fill, stroke;
+    transition: .3s ease-in-out;
+
+    @if $padding != 'p'{padding: $padding;}
+
+    @if $bg-color != 'bgc' {
+        background-color: $bg-color;
+    } @else {
+        background-color: transparent;
+    }
+
+    @if $border != 'b' {
+        border: $border;
+    } @else {
+        border: none;
+    }
+}
+
+/* Подключение
+
+@include _button-reset(p, bgc, b);
+*/
+/* ===== Миксин btn END ===== */
+
+
+/* ===== Миксин link START ===== */
+@mixin _link {
+    position: relative;
+    cursor: pointer;
+    transition-property: background-color, border, border-color, color, fill, stroke;
+    transition: .3s ease-in-out;
+}
+
+/* Подключение
+@include _link;
+*/
+/* ===== Миксин link END ===== */
+
+/* ===== Миксин flex START ===== */
+
+@mixin flex-block($wrap: wrap, $justify: center, $align: center) {
+    display: flex;
+    flex-wrap: $wrap;
+    justify-content: $justify;
+    align-items: $align;
+}
+
+/* Подключение
+@include flex-block($wrap: wrap, $justify: center, $align: center);
+*/
+/* ===== Миксин flex END ===== */
+@mixin placeholder($color, $font, $size, $line) {
+    color: $color;
+    font-family: $font, sans-serif;
+    font-size: $size;
+    line-height: $line;
+    top: 50%;
+    transform: translateY(-50%);     
+}
+
+@mixin placeholders($color, $font, $size, $line) {
+    &::-webkit-input-placeholder {
+        @include placeholder($color, $font, $size, $line);
+    }
+    &::-moz-placeholder {
+        @include placeholder($color, $font, $size, $line);
+    }
+    &::-ms-input-placeholder {
+        @include placeholder($color, $font, $size, $line);
+    }
+}
+
+@mixin bg-image() {
+    background-position: center;
+    background-size: cover;
+    background-repeat: no-repeat;
+}
+
+@mixin button($width, $height, $bg-color, $text-color, $hover-bg-color, $hover-text-color, $border, $border-hover) {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: $width;
+    height: $height;
+    background-color: $bg-color;
+    border-radius: 12px;
+    border: 1px solid $border;
+    color: $text-color;
+    font-family: $golos-500;
+    font-size: 15px;
+    line-height: 140%;
+    transition: .5s;
+    cursor: pointer;
+
+    &:hover {
+        background-color: $hover-bg-color;
+        color: $hover-text-color;
+        border: 1px solid $border-hover;
+    }
+}
+
+@mixin main-title($size: 40px, $height: 48px, $color: $purple) {
+    font-family: $loos-700;
+    font-size: $size;
+    font-weight: 700;
+    line-height: $height;
+    text-align: center;
+    color: $color;
+    text-transform: uppercase;
+}
+
+@mixin body-text($color: $black) {
+    font-family: $golos-400;
+    font-size: 15px;
+    line-height: 21px;
+    color: $color;
+}
+
+@mixin body-text-2($color: $black) {
+    font-family: $golos-500;
+    font-size: 15px;
+    line-height: 21px;
+    color: $color;
+}

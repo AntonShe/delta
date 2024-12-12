@@ -1,0 +1,916 @@
+.big-card {
+    &.section {
+        margin-bottom: 20px;
+    }
+
+    &__wrapper {
+        display: -ms-grid;
+        display: grid;
+        grid-template-areas:
+        "a b d"
+        "a c d"
+        "a c d";
+        grid-template-columns: max-content auto minmax(292px, 388px);
+        grid-template-rows: 0.2fr 2fr 0.2fr;
+        column-gap: 20px;
+        row-gap: 40px;
+        max-height: 444px;
+
+        @media (max-width: 1452px) {
+            grid-template-areas:
+            "b b b"
+            "a . d"
+            "a . d"
+            "a . d"
+            "c c c";
+            row-gap: 20px;
+            grid-template-columns: max-content auto minmax(292px, 388px);
+            grid-template-rows: auto 150px;
+            max-height: 100%;
+        }
+
+        @media (max-width: $screen-sm) {
+            grid-template-areas:
+            "a"
+            "b"
+            "d"
+            "c";
+            grid-template-rows: auto;
+            grid-template-columns: auto;
+        }
+
+        @media (max-width: $screen-xl) {
+            column-gap: 9px;
+        }
+    }
+
+    &__cover-container {
+        display: flex;
+        gap: 20px;
+        grid-area: a;
+        height: 444px;
+        overflow: visible;
+
+        @media (min-width: $screen-sm) {
+            overflow: hidden;
+        }
+
+        @media (max-width: 1452px) {
+            height: 410px;
+        }
+
+        &--swiper {
+            @media (max-width: $screen-sm) {
+                flex-direction: column-reverse;
+                gap: 10px;
+                height: 512px;
+                max-width: unset;
+            }
+
+            .big-card__img-wrap {
+
+                @media (max-width: $screen-xl) {
+                    max-width: 292px;
+                }
+
+                @media (max-width: $screen-sm) {
+                    max-width: unset;
+                }
+            }
+        }
+    }
+
+    &__swiper-container {
+        display: flex;
+        flex-direction: column;
+        gap: 8px;
+        max-width: calc(100vw - 21px);
+        margin-left: -15px;
+        max-height: 100%;
+
+        @media (min-width: $screen-sm) {
+            max-width: 106px;
+            margin-left: 0;
+        }
+
+        @media (min-width: $screen-xl) {
+            max-width: 116px;
+        }
+    }
+
+    &__swiper {
+        display: flex;
+        max-height: 100%;
+        max-width: 100%;
+        margin-left: 0;
+        overflow: visible;
+
+        @media (min-width: $screen-sm) {
+            margin-left: auto;
+            max-width: 106px;
+            overflow: hidden;
+        }
+
+        @media (min-width: $screen-xl) {
+            max-width: 116px;
+        }
+
+        &--navigation {
+            @media (min-width: $screen-md) {
+                max-height: 292px;
+            }
+
+            @media (min-width: $screen-xl) {
+                max-height: 318px;
+            }
+        }
+
+        & > .swiper-wrapper {
+            flex-direction: row;
+            gap: 10px;
+            overflow-x: auto;
+            width: 100vw;
+            min-width: 100vw;
+            padding-right: 15px;
+            padding-left: 15px;
+            box-sizing: border-box;
+
+            &::-webkit-scrollbar {
+                width: 0;
+                padding: 0;
+                display: none;
+            }
+
+            @media (min-width: $screen-sm) {
+                flex-direction: column;
+                gap: 0;
+                overflow-x: visible;
+                width: auto;
+                min-width: auto;
+                padding: 0;
+                box-sizing: content-box;
+            }
+        }
+    }
+
+    &__swiper-slide {
+        height: 92px;
+        width: 72px;
+        padding: 6px;
+        @include _border-radius(6px);
+        border: 2px solid $Zinc-200;
+        box-sizing: border-box;
+
+        @media (min-width: $screen-sm) {
+            height: 142px;
+            width: auto;
+            padding: 10px;
+            @include _border-radius(4px);
+        }
+
+        @media (min-width: $screen-xl) {
+            height: 155px;
+            @include _border-radius(8px);
+        }
+
+        & > img {
+            border-radius: 6px;
+
+            @media (min-width: $screen-sm) {
+                border-radius: 4px;
+            }
+
+            @media (min-width: $screen-xl) {
+                border-radius: 8px;
+            }
+        }
+    }
+
+    &__navigation-button {
+        display: none;
+
+        @media (min-width: $screen-sm) {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+            gap: 10px;
+            height: 70px;
+            background: white;
+        }
+    }
+
+    &__swiper-button {
+        width: 30px;
+        height: 30px;
+        z-index: 2;
+        transition-property: background-color, color, box-shadow, transform;
+        transition: .2s ease-in-out;
+        cursor: pointer;
+
+        &:hover:not(.swiper-button-disabled) {
+            transform: scale(1.11);
+        }
+    }
+
+    &__swiper-prev {
+        background: get-icon('arrow-top', $Zinc-900) no-repeat center;
+
+        &.swiper-button-disabled {
+            background: get-icon('arrow-top', $Zinc-400) no-repeat center;
+        }
+    }
+
+    &__swiper-next {
+        background: get-icon('arrow-bottom', $Zinc-900) no-repeat center;
+
+        &.swiper-button-disabled {
+            background: get-icon('arrow-bottom', $Zinc-400) no-repeat center;
+        }
+    }
+
+    &__modal-button {
+        display: none;
+
+        @media (min-width: $screen-sm-s) {
+            display: flex;
+            position: absolute;
+            align-items: center;
+            justify-content: center;
+            top: calc(50% - 20px);
+            width: 40px;
+            height: 40px;
+            z-index: 2;
+            transition-property: background-color, color, box-shadow, transform;
+            transition: .2s ease-in-out;
+            cursor: pointer;
+        }
+
+        &::after {
+            content: '';
+            position: absolute;
+            left: 0;
+            right: 0;
+            top: 0;
+            bottom: 0;
+            box-shadow: 0 2px 4px rgba(0, 0, 0, 0.06);
+            background: white;
+            backdrop-filter: blur(13px);
+            @include _border-radius(5px);
+            transition: .2s ease-in-out;
+        }
+
+        &:hover:not(.swiper-button-disabled)::after {
+            transform: scale(1.2);
+        }
+    }
+
+    &__modal-button-prev {
+        left: -50px;
+
+        &::before{
+            content: '';
+            position: relative;
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin-right: 2px;
+            background: get-icon('new-arrow-left', $Zinc-900) no-repeat center;
+            z-index: 1;
+        }
+
+        &.swiper-button-disabled::before {
+            background: get-icon('new-arrow-left', $Zinc-400) no-repeat center;
+        }
+    }
+
+    &__modal-button-next {
+        right: -50px;
+
+        &::before {
+            content: '';
+            position: relative;
+            display: block;
+            width: 24px;
+            height: 24px;
+            margin-left: 2px;
+            background: get-icon('new-arrow-right', $Zinc-900) no-repeat center;
+            z-index: 1;
+        }
+
+        &.swiper-button-disabled::before {
+            background: get-icon('new-arrow-right', $Zinc-400) no-repeat center;
+        }
+    }
+
+    &__modal-pagination {
+        @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-500);
+        position: absolute;
+        left: 15px;
+        bottom: 10px;
+        width: 60px;
+        display: none;
+
+        @media (max-width: $screen-sm-s) {
+            display: block;
+        }
+    }
+
+    &__swiper-img {
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+    }
+
+    &__img {
+        width: 100%;
+        height: 100%;
+        object-fit: contain;
+        cursor: pointer;
+
+        &-wrap {
+            width: 334px;
+            height: 100%;
+            max-width: 334px;
+            padding: 20px;
+            border: 2px solid $Zinc-200;
+            @include _border-radius(8px);
+
+            @media (max-width: 1452px) {
+                width: 354px;
+                height: 410px;
+                max-width: 354px;
+            }
+
+            @media (max-width: $screen-sm) {
+                width: 100%;
+                padding: 10px;
+                max-width: unset;
+            }
+        }
+
+        &--opacity {
+            opacity: 0.4;
+        }
+
+        &_modal {
+            max-height: 80vh;
+            border-radius: 8px;
+            cursor: default;
+            
+            @media (max-width: $screen-sm-s) {
+                max-height: calc(100vh - 150px);
+                border-radius: 0;
+            }
+        }
+    }
+
+    &__top {
+        grid-area: b;
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+
+        &-wrap {
+            margin-bottom: 20px;
+        }
+
+        &-rating {
+            width: 58px;
+            height: 26px;
+            margin-right: 10px;
+            text-align: center;
+            color: $white;
+
+            @include _border-radius(8px);
+
+            &.high {
+                background: linear-gradient(178.13deg, #FADB8B -26.38%, #CD9A1A 98.42%);
+            }
+
+            &.medium {
+                background-color: $Green-600;
+            }
+
+            &.low {
+                background-color: $Zinc-400;
+            }
+        }
+
+        &-rating-sum {
+            margin-right: 30px;
+            color: $Zinc-500;
+        }
+
+        &-lang {
+            color: $Zinc-500;
+            padding-left: 30px;
+            background: get-icon('lang', $Zinc-500) no-repeat left;
+        }
+
+        &-descr {
+            max-width: 660px;
+        }
+
+        @media (max-width: $screen-sm) {
+            font-size: 14px;
+            line-height: 20px;
+
+            &-rating {
+                width: 54px;
+                height: 20px;
+                margin-right: 14px;
+            }
+
+            &-rating-sum {
+                margin-right: 14px;
+            }
+        }
+    }
+
+    &__bottom {
+        grid-area: c;
+
+        &-item {
+            @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+
+            &:not(:last-child) {
+                margin-bottom: 20px;
+            }
+
+            .big-card__item {
+                &-left {
+                    width: 116px;
+                    min-width: 116px;
+                    margin-right: 20px;
+                    color: $Zinc-500;
+                }
+
+                &-right {
+                    max-width: 522px;
+                    width: 100%;
+                }
+            }
+
+            .mini-card__autor {
+                @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+            }
+        }
+
+        &-btn {
+            display: block;
+            margin-top: 40px;
+            background-image: get-icon('eye-on', $Zinc-900);
+            background-repeat: no-repeat;
+            background-position: 12px;
+
+            &.button-red {
+                padding-left: 38px;
+            }
+        }
+    }
+
+    &__main {
+        grid-area: d;
+
+        &-top {
+            padding: 20px;
+            margin-bottom: 20px;
+            border: 2px solid $Zinc-200;
+            @include _border-radius(8px);
+
+            .big-card__main {
+                &-item:not(:last-child) {
+                    margin-bottom: 20px;
+
+                    @media (max-width: $screen-sm) {
+                        margin-bottom: 10px;
+                    }
+                }
+
+                &-states {
+                    justify-content: space-between;
+                    align-items: center;
+                }
+
+                &-prices {
+                    align-items: flex-end;
+                }
+
+                &-buttons {
+                    display: flex;
+                    align-items: center;
+
+                    .button-tocart {
+                        height: 56px;
+                        color: $white;
+
+                        @include _button-reset(16px 24px, $Zinc-700, b);
+                        @include _typography-ext(fn, 18, 24, 600, ls, fc);
+                        @include _hover(bc, tc, bgi, $Zinc-900);
+                    }
+
+                    .mini-card__button-count {
+                        background-color: inherit;
+                        border: 2px solid $Zinc-700;
+                        @include _hover(bc, tc, bgi, inherit);
+                    }
+                }
+
+                &-share {
+                    border-top: 2px solid $Zinc-200;
+                    margin-top: 20px;
+                    padding-top: 20px;
+
+                    @media (max-width: $screen-sm) {
+                        padding-top: 10px;
+                    }
+                }
+            }
+
+            .big-card {
+                &__state {
+                    margin-right: auto;
+
+                    &_color_available {
+                        padding-left: 26px;
+                        background: get-icon('check', $Green-600) no-repeat left;
+                        @include _typography-ext(fn, 16, 26, 400, ls, $Green-600);
+                    }
+
+                    &_color_not-available {
+                        color: $Rose-600;
+                    }
+
+                    @media (max-width: $screen-sm) {
+                        padding-left: 22px;
+                        font-size: 14px;
+                        line-height: 20px;
+                    }
+                }
+
+                &__label-discount {
+                    padding: 2px 14px;
+                    text-align: center;
+                    background-color: $Red-400;
+                    @include _typography-ext(fn, 16, 26, 400, ls, $white);
+                    @include _border-radius(100px);
+
+                    @media (max-width: $screen-sm) {
+                        @include _typography-ext(fn, 14, 20, 400, ls, $white);
+                    }
+                }
+
+                &__button-like {
+                    margin-left: 10px;
+                    padding: 0;
+                    position: relative;
+                    top: 0;
+                    right: 0;
+                    height: auto;
+
+                    @media (max-width: $screen-sm) {
+                        width: 24px;
+                        height: 24px;
+                    }
+                }
+
+                &__price-new {
+                    margin-right: 10px;
+                    @include _typography-ext(fn, 30, 36, 600, ls, $Zinc-900);
+
+                    @media (max-width: $screen-xl) {
+                        @include _typography-ext(fn, 24, 32, 600, ls, $Zinc-900);
+                    }
+                }
+
+                &__price-old {
+                    text-decoration: line-through;
+                    @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-500);
+
+                    @media (max-width: $screen-xl) {
+                        @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-500);
+                    }
+                }
+
+                &__tocart {
+                    &-button {
+                        width: 100%;
+
+                        @media (max-width: $screen-xl) {
+                            height: 44px;
+                            padding: 9px 24px;
+                            @include _typography-ext(fn, 16, 26, 600, ls, $white);
+                        }
+                    }
+
+                    &-wrap {
+                        display: none;
+                        flex-wrap: wrap;
+                        column-gap: 14px;
+                        row-gap: 14px;
+                    }
+
+                    &-link {
+                        @media (max-width: $screen-xl) {
+                            height: 44px;
+                            padding: 9px 24px;
+                            @include _typography-ext(fn, 16, 26, 600, ls, $white);
+                        }
+                    }
+                }
+
+                &__count {
+                    &-wrap {
+                        display: flex;
+                        justify-content: space-between;
+                        align-items: center;
+                        width: 112px;
+                    }
+
+                    &-btn {
+                        width: 36px;
+                        height: 36px;
+                        @include _border-radius(8px);
+                        @include _button-reset(p, $Zinc-500, b);
+                        background-repeat: no-repeat;
+                        background-position: center;
+                    }
+
+                    &-minus {
+                        background-image: get-icon('minus', $white);
+
+                        &.disable {
+                            background-color: $Zinc-100;
+                        }
+                    }
+
+                    &-input {
+                        input {
+                            @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-900);
+                        }
+                    }
+
+                    &-plus {
+                        background-image: get-icon('plus', $white);
+                    }
+                }
+
+                &__tooltip {
+                    display: none;
+                }
+            }
+        }
+
+        &-bottom {
+            padding: 20px 20px 24px 20px;
+            @include _border-radius(8px);
+            background-color: $Zinc-50;
+
+            @media (max-width: $screen-xl) {
+                padding: 18px 12px 18px 18px;
+            }
+
+            @media (max-width: $screen-sm) {
+                padding: 10px;
+            }
+        }
+
+        &-descr {
+            margin-bottom: 10px;
+            @include _typography-ext(fn, 18, 28, 600, ls, $Zinc-900);
+        }
+
+        @media (max-width: $screen-xl) {
+            max-width: 292px;
+        }
+
+        @media (max-width: $screen-sm) {
+            max-width: unset;
+
+            &-top {
+                padding: 10px;
+            }
+        }
+    }
+
+    &__rating {
+        width: 232px;
+        height: 40px;
+    }
+
+    &__person-link {
+        color: $Indigo-400;
+
+        &:hover {
+            color: $Indigo-600;
+        }
+    }
+}
+
+.big-card__modal {
+    position: fixed;
+    top: 0;
+    left: 0;
+    bottom: 0;
+    right: 0;
+    background-color: rgba($black, 0.2);
+    z-index: 9;
+    backdrop-filter: blur(3px);
+
+    @media (max-width: $screen-sm-s) {
+        background-color: $white;
+    }
+}
+
+.big-card__modal-content {
+    padding: 20px;
+    // max-width: 626px;
+    // max-height: 80%;
+    max-width: calc(80vh * 0.78);
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    transform: translate(-50%, -50%);
+    background-color: $white;
+    border-radius: 8px;
+
+    @media (max-width: $screen-sm-s) {
+        padding: 0;
+        max-width: 100%;
+        width: 100%;
+        max-height: 80%;
+        border-radius: 0;
+    }
+
+    .swiper-wrapper {
+        align-items: center;
+    }
+}
+
+.big-card__modal-close {
+    @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-500);
+    position: absolute;
+    right: 15px;
+    bottom: 10px;
+    display: none;
+    cursor: pointer;
+
+    @media (max-width: $screen-sm-s) {
+        display: block;
+    }
+}
+
+.description {
+    &.section {
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+        margin-bottom: 10px;
+    }
+
+    &__text-link {
+        color: $Indigo-400;
+        @include _link;
+
+        &:hover {
+            color: $Indigo-600;
+        }
+    }
+
+    &__text {
+        max-width: 928px;
+        max-height: 78px;
+        overflow: hidden;
+        text-overflow: ellipsis;
+        display: -moz-box;
+        display: -webkit-box;
+        -moz-box-orient: vertical;
+        -webkit-box-orient: vertical;
+        box-orient: vertical;
+        line-clamp: 3;
+        -webkit-line-clamp: 3;
+
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+
+        ul {
+            list-style: disc;
+            padding-left: 15px;
+        }
+
+        li {
+            margin-left: 15px;
+        }
+    }
+}
+
+.сharacteristic {
+    &.section {
+        margin-bottom: 20px;
+    }
+
+    &__title {
+        margin-bottom: 20px;
+        @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+
+        &-min {
+            @include _typography-ext(fn, 18, 24, 600, ls, $Zinc-500);
+            margin-bottom: 20px;
+
+            @media (max-width: $screen-xl) {
+                @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-500);
+            }
+        }
+    }
+
+    &__wrapper {
+        max-width: 1204px;
+
+        @media (max-width: $screen-md) {
+            flex-direction: column;
+        }
+    }
+
+    &__left,
+    &__right {
+        max-width: 480px;
+        width: 100%;
+    }
+
+    &__right {
+        margin-left: 18px;
+
+        @media (max-width: 900px) {
+            .сharacteristic__item-left {
+                width: 158px;
+                min-width: 158px;
+            }
+        }
+
+        @media (max-width: $screen-md) {
+            margin-left: 0;
+            margin-top: 20px;
+        }
+    }
+
+    &__item {
+        width: 100%;
+        padding: 6px 10px;
+        background-color: #FAFAFA;
+        @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-500);
+
+        &:not(:last-child) {
+            margin-bottom: 5px;
+        }
+
+        &-left {
+            width: 175px;
+            min-width: 175px;
+            margin-right: 20px;
+
+            @media (max-width: 900px) {
+                width: 175px;
+                min-width: 175px;
+            }
+
+            @media (max-width: $screen-sm) {
+                width: 175px;
+                min-width: auto;
+            }
+        }
+
+        &-right {
+            color: $Zinc-900;
+        }
+
+        &-link {
+            color: $Indigo-400;
+
+            &:hover {
+                color: $Indigo-600;
+            }
+        }
+    }
+}
+
+.card-catalog {
+    &__container {
+        padding-top: 50px;
+        padding-bottom: 50px;
+        border-top: 2px solid $Zinc-200;
+        border-bottom: 2px solid $Zinc-200;
+
+        @media (max-width: $screen-xl) {
+            padding-top: 40px;
+            padding-bottom: 40px;
+        }
+    }
+
+    &__title {
+        @include _typography-ext(fn, 30, 36, 600, ls, $Zinc-900);
+        margin-bottom: 20px;
+
+        @media (max-width: $screen-sm) {
+            @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+        }
+    }
+}

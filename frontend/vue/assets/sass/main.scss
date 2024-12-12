@@ -1,0 +1,95 @@
+//подключение стилей
+@import "./form";
+@import "./normalize";
+
+html {
+  box-sizing: border-box;
+  scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+  margin: 0;
+  padding: 0;
+  box-sizing: inherit;
+
+}
+
+ul {
+  list-style: none;
+}
+
+body {
+  margin: 0 auto;
+  font-family: "Inter", sans-serif;
+  background-color: $white;
+}
+
+.main {
+  position: relative;
+}
+
+.container {
+  margin: 0 auto;
+  padding-left: 50px;
+  padding-right: 50px;
+  max-width: 1712px;
+
+  @media (max-width: 1024px) {
+    padding-left: 21px;
+    padding-right: 21px;
+  }
+
+  @media (max-width: 625px) {
+    padding-left: 15px;
+    padding-right: 15px;
+  }
+}
+
+.section {
+  margin-bottom: 50px;
+
+  @media (max-width: 1024px) {
+    margin-bottom: 40px;
+  }
+
+  &:first-child {
+    padding-top: 20px;
+
+    @media (max-width: 1024px) {
+      padding-top: 10px;
+    }
+
+    @media (max-width: 760px) {
+      padding-top: 76px;
+    }
+  }
+}
+
+a {
+  text-decoration: none;
+  transition: .3s;
+  color: unset;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.noscroll {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}

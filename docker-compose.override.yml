@@ -1,0 +1,21 @@
+version: '3'
+
+services:
+
+  php:
+    restart: on-failure
+    entrypoint: /bin/sh /var/www/deltabook/current/docker/php/entrypoint.sh
+    ports:
+      - 127.0.0.1:6066:6066
+      - 127.0.0.1:6067:6067
+
+  memcached:
+    restart: on-failure
+
+  mail:
+    restart: on-failure
+
+  nginx:
+    restart: on-failure
+    ports:
+      - 6660:80

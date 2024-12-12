@@ -1,0 +1,243 @@
+.course-block {
+  align-items: center;
+  justify-content: space-between;
+
+  &__left {
+    padding-right: 20px;
+    max-width: 660px;
+    width: 100%;
+  }
+
+  &__name-course {
+    margin-bottom: 14px;
+    @include _typography-ext(fn, 30, 36, 600, ls, $Zinc-900);
+  }
+
+  &__title {
+    margin-bottom: 14px;
+    @include _typography-ext(fn, 48, 58, 600, ls, $Zinc-900);
+  }
+
+  &__descr {
+    margin-bottom: 38px;
+    @include _typography-ext(fn, 18, 24, 400, ls, $Zinc-900);
+  }
+
+  &__wrapper {
+    max-width: 298px;
+    flex-direction: column;
+  }
+
+  &__descr_color {
+    margin-bottom: 14px;
+    @include _typography-ext(fn, 24, 32, 600, ls, $Red-400);
+  }
+
+  &__right {
+    width: 932px;
+    height: 554px;
+    @include _border-radius(20px);
+    overflow: hidden;
+  }
+
+  &__btn {
+    width: 238px;
+  }
+
+  .banner {
+    position: relative;
+    width: 100%;
+    height: 100%;
+    background: linear-gradient(90deg, rgba(255,216,214,1) 0%, rgba(253,245,213,1) 32%);
+
+    img {
+      width: 410px;
+      height: 510px;
+      position: absolute;
+      @include _border-radius(8px);
+    }
+
+    .banner__img-1 {
+      bottom: -10px;
+      right: -139px;
+      z-index: 4;
+    }
+
+    .banner__img-2 {
+      bottom: -44px;
+      right: 17px;
+      z-index: 3;
+      transform: rotate(-5deg);
+    }
+
+    .banner__img-3 {
+      bottom: -122px;
+      right: 171px;
+      z-index: 2;
+      transform: rotate(-15deg);
+    }
+
+    .banner__img-4 {
+      bottom: -203px;
+      right: 359px;
+      z-index: 1;
+      transform: rotate(-20deg);
+    }
+  }
+}
+
+@media (max-width: 1630px) {
+  .course-block {
+    &__left {
+      max-width: 500px;
+    }
+
+    &__name-course {
+      margin-bottom: 8px;
+      @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+    }
+
+    &__title {
+      margin-bottom: 8px;
+      @include _typography-ext(fn, 24, 32, 600, ls, $Zinc-900);
+    }
+
+    &__descr {
+      margin-bottom: 28px;
+      @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-900);
+    }
+
+    &__right {
+      width: 726px;
+      height: 404px;
+    }
+
+    .banner {
+
+      img {
+        width: 304px;
+        height: 389px;
+      }
+
+      .banner__img-1 {
+        bottom: -37px;
+        right: -103px;
+      }
+
+      .banner__img-2 {
+        bottom: -62px;
+        right: 15px;
+      }
+
+      .banner__img-3 {
+        bottom: -122px;
+        right: 132px;
+      }
+
+      .banner__img-4 {
+        bottom: -183px;
+        right: 275px;
+      }
+    }
+  }
+}
+
+@media (max-width: $screen-xl-l) {
+  .course-block {
+    flex-direction: column-reverse;
+
+    &__right {
+      margin-bottom: 18px;
+      width: 100%;
+      max-width: 726px;
+    }
+
+    &__left {
+      padding-right: 0;
+      width: 100%;
+      max-width: unset;
+    }
+
+    &__wrapper {
+      max-width: unset;
+      width: 100%;
+      flex-direction: row;
+    }
+
+    &__descr_color {
+      margin-right: 18px;
+    }
+
+    &__descr_color,
+    &__btn {
+      width: calc((100% / 2) - 18px);
+    }
+  }
+}
+
+@media (max-width: 620px) {
+  .course-block {
+    &__right {
+      margin-bottom: 12px;
+      height: 58vw;
+      max-height: 404px;
+    }
+
+    &__name-course {
+      margin-bottom: 4px;
+      @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-900);
+    }
+
+    &__title {
+      margin-bottom: 4px;
+      @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+    }
+
+    &__descr {
+      margin-bottom: 12px;
+      @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-900);
+    }
+
+    &__wrapper {
+      flex-direction: column;
+    }
+
+    &__descr_color {
+      margin-right: 0;
+      margin-bottom: 14px;
+      width: 100%;
+      @include _typography-ext(fn, 20, 28, 600, ls, $Red-400);
+    }
+
+    &__btn {
+      width: 100%;
+    }
+
+    .banner {
+      img {
+        width: 145px;
+        height: 188px;
+      }
+
+      .banner__img-1 {
+        bottom: -7px;
+        right: -68px;
+      }
+
+      .banner__img-2 {
+        bottom: -20px;
+        right: -11px;
+      }
+
+      .banner__img-3 {
+        bottom: -49px;
+        right: 45px;
+      }
+
+      .banner__img-4 {
+        bottom: -78px;
+        right: 113px;
+      }
+    }
+  }
+}

@@ -1,0 +1,70 @@
+//подключение стилей
+//@import "./fonts";
+@import "./normalize";
+@import "./form";
+@import "./button";
+
+$gutter: 1rem; //for primeflex grid system
+@import './layout/layout.scss';
+@import './themes/lara-light-indigo.css';
+
+/* PrimeVue */
+@import 'primeflex/primeflex.scss';
+@import '~primeicons/primeicons.css';
+
+body {
+  margin: 0;
+  padding: 0;
+}
+
+a {
+  text-decoration: none;
+  transition: .3s;
+  color: unset;
+}
+
+.visually-hidden {
+  position: absolute;
+  width: 1px;
+  height: 1px;
+  margin: -1px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  clip: rect(0 0 0 0);
+}
+
+.overflow-hidden {
+  overflow: hidden;
+}
+
+.noscroll {
+  min-height: 100vh;
+  height: 100vh;
+  overflow: hidden;
+}
+
+.table > :not(caption) > * > * {
+  background-color: transparent;
+}
+
+.body__row {
+  cursor: pointer;
+
+  &:hover {
+    background-color: rgba($lightgray, 0.5);
+  }
+}
+
+.form__checkbox {
+  display: flex;
+  gap: 6px;
+
+  [type="checkbox"] {
+    cursor: pointer;
+  }
+}
+
+.form__checkbox-label {
+  cursor: pointer;
+}

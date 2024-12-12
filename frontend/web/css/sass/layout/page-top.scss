@@ -1,0 +1,61 @@
+.page-top {
+
+  &__title {
+    margin: 0;
+    @include _typography-ext(fn, 30, 36, 600, ls, $Zinc-900);
+
+    @media (max-width: $screen-xl) {
+      @include _typography-ext(fn, 24, 32, 600, ls, $Zinc-900);
+    }
+
+    @media (max-width: $screen-sm) {
+      @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+    }
+
+    &-link {
+      display: none;
+      margin-right: 4px;
+
+      @media (max-width: 638px) {
+        display: block;
+      }
+    }
+
+    &-wrap {
+      margin-bottom: 20px;
+      align-items: center;
+
+      @media (max-width: $screen-sm) {
+        margin-bottom: 10px;
+      }
+    }
+  }
+}
+
+.breadcrumb {
+  margin-bottom: 20px;
+
+  & > li + li::before {
+    padding: 0 6px;
+    color: #ccc;
+    content: "/\00a0";
+  }
+
+  @media (max-width: $screen-xl) {
+    margin-bottom: 20px;
+  }
+
+  &__item {
+    @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-400);
+
+    &_active {
+      color: $Zinc-600;
+    }
+  }
+
+  @media (max-width: 638px) {
+    &.flex {
+      display: none;
+    }
+  }
+}

@@ -1,0 +1,56 @@
+version: '3'
+
+networks:
+  default:
+    external:
+      name: bridge
+
+services:
+
+  memcached:
+    env_file: .env
+    image: mirror.gcr.io/memcached:latest
+    network_mode: bridge
+    restart: always
+
+  nginx:
+    env_file: .env
+    image: mirror.gcr.io/nginx:stable
+    network_mode: bridge
+    restart: always
+    volumes:
+      - ./docker/nginx/nginx.conf:/etc/nginx/nginx.conf
+      - .:/var/www/deltabook/current
+      - ./docker/logs/nginx:/var/log/nginx
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    depends_on:
+      - php
+    links:
+      - php
+
+  php:
+    env_file: .env
+    network_mode: bridge
+    restart: always
+    image: gitlab.labsvr.ru:4567/labirint.ru/deltabook/php:latest
+    volumes:
+      - .:/var/www/deltabook/current
+      - ./docker/logs/php:/var/www/scripts/log/
+      - ./docker/logs/php:/var/log/php/
+      - ./docker/logs/php:/root/.npm/_logs
+      - "/etc/localtime:/etc/localtime:ro"
+      - "/etc/timezone:/etc/timezone:ro"
+    extra_hosts:
+      - ""
+    links:
+      - memcached
+      - mail
+
+  mail:
+    env_file: .env
+    network_mode: bridge
+    restart: always
+    image: catatnight/postfix
+    volumes:
+      - ./docker/mail/main.cf:/etc/postfix/main.cf

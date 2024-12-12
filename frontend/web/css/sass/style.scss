@@ -1,0 +1,348 @@
+@import './font';
+//region Abstracts
+@import 'mixins';
+@import 'functions';
+//endregion
+//region Base
+@import 'normalize';
+@import 'variables';
+//endregion
+//region Components
+@import './components/_icons';
+@import './components/dropdown';
+@import './components/rating';
+@import './components/popup';
+@import './components/filters';
+@import './components/mini-card';
+@import './components/btns';
+@import './components/share-btn';
+@import './components/preloader';
+@import './components/sorting';
+@import './components/big-banner';
+@import './components/error-page';
+@import './components/input';
+//endregion
+//region Layout
+@import './layout/header';
+@import './layout/footer';
+@import './layout/promotion';
+@import './layout/shelf-cards';
+@import './layout/course-block';
+@import './layout/commodity-card';
+@import './layout/page-top';
+@import './layout/catalogs';
+@import './layout/agreement-payment';
+@import './layout/promotion-page';
+@import './layout/contacts-page';
+@import './layout/person-page';
+//endregion
+//region Something Else
+html {
+    box-sizing: border-box;
+    scroll-behavior: smooth;
+}
+
+*,
+*::before,
+*::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: inherit;
+}
+
+body {
+    margin: 0 auto;
+    font-family: "Inter", sans-serif;
+    background-color: $white;
+}
+
+.body--scroll_none {
+    overflow-y: hidden;
+}
+
+.main {
+    position: relative;
+
+    @media (min-width: 761px) {
+        margin-top: 120px;
+    }
+
+    @media (min-width: 1136px) {
+        margin-top: 140px;
+    }
+}
+
+.main__wrapper {
+    min-height: calc(100vh - 536px);
+    background-color: $Zinc-50;
+
+    @media (min-width: $tablet-width) {
+        min-height: calc(100vh - 525px);
+    }
+}
+
+.container {
+    margin: 0 auto;
+    padding-left: 50px;
+    padding-right: 50px;
+    max-width: 1712px;
+
+    @media (max-width: $screen-xl) {
+        padding-left: 21px;
+        padding-right: 21px;
+    }
+
+    @media (max-width: $screen-sm-s) {
+        padding-left: 15px;
+        padding-right: 15px;
+    }
+}
+
+.section {
+    margin-bottom: 50px;
+
+    @media (max-width: $screen-xl) {
+        margin-bottom: 40px;
+    }
+
+    &:first-child {
+        padding-top: 20px;
+
+        @media (max-width: $screen-xl) {
+            padding-top: 10px;
+        }
+
+        @media (max-width: $screen-md) {
+            padding-top: 76px;
+        }
+    }
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+.flex {
+    display: flex;
+}
+
+.flex-between {
+    display: flex;
+    justify-content: space-between;
+}
+
+.hidden {
+    display: none;
+}
+
+.block {
+    display: block;
+}
+
+.center {
+    margin: auto;
+}
+
+a {
+    color: inherit;
+    text-decoration: none;
+}
+
+a:focus {
+    outline: none;
+}
+
+img {
+    width: 100%;
+}
+
+h1,
+h2,
+h3,
+p {
+    margin: 0;
+}
+
+.input {
+    display: block;
+    padding: 9px 12px;
+    position: relative;
+    width: 100%;
+    border: none;
+    border-bottom: 1px solid $Zinc-400;
+    @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+    outline: none;
+    caret-color: $black;
+    -webkit-appearance: none;
+    background: none;
+    box-sizing: border-box;
+
+    &:focus {
+        outline: none;
+        background: none;
+    }
+
+    &:hover {
+        border-color: $black;
+    }
+
+    &:active {
+        border-color: $Indigo-400;
+    }
+
+    &::-webkit-outer-spin-button,
+    &::-webkit-inner-spin-button {
+        -webkit-appearance: none;
+        margin: 0;
+    }
+
+    &::-webkit-input-placeholder,
+    &::-moz-placeholder,
+    &:-moz-placeholder,
+    &:-ms-input-placeholder {
+        color: $Zinc-400;
+    }
+
+    &_invalid {
+        border-color: $Rose-600;
+    }
+}
+
+.no-scroll {
+    overflow: hidden;
+}
+
+.error-message {
+    @include _typography-ext(fn, 12, 16, 400, ls, $Rose-600);
+    margin: 5px 24px;
+    transition: .3s;
+    opacity: 0;
+}
+
+.error-message.active {
+    opacity: 1;
+}
+
+.tooltip,
+.tooltip-info {
+    position: absolute;
+    top: 32px;
+    right: 0;
+    padding: 5px 10px;
+    background-color: $Zinc-700;
+    box-shadow: 0 3px 8px rgba(45, 77, 108, 0.15);
+    @include _border-radius(4px);
+    @include _typography-ext(fn, 14, 20, 400, ls, $white);
+}
+
+.tooltip-info {
+    display: none;
+    right: auto;
+
+    &--active {
+        display: block;
+        z-index: 20;
+    }
+}
+
+.counter {
+  &_active{
+    display: flex;
+  }
+
+  &_hidden{
+    display: none;
+  }
+
+  &__input {
+    max-width: 39px;
+
+        input {
+            height: 26px;
+            width: 100%;
+            text-align: center;
+            background-color: transparent;
+            border: none;
+        }
+    }
+
+}
+
+.grid {
+    display: -ms-grid;
+    display: grid;
+    grid-gap: 20px;
+    grid-template-columns: repeat(auto-fill, 252px);
+    align-items: center;
+
+    @media (max-width: $screen-xl-l) {
+        grid-gap: 18px;
+        grid-template-columns: repeat(auto-fill, 230px);
+    }
+
+    @media (max-width: $screen-md) {
+        grid-template-columns: repeat(auto-fill, 156px);
+        justify-content: center;
+    }
+}
+
+.open-content {
+    max-height: 500px;
+    display: block;
+    overflow: auto;
+}
+
+.pagination {
+    margin: 0 auto;
+    max-width: 329px;
+    width: max-content;
+    display: flex;
+    align-items: center;
+
+    &__button {
+        &-back {
+            margin-right: 10px;
+        }
+
+        &-next {
+            margin-left: 10px;
+            transform: rotateY(180deg);
+        }
+
+        &_disabled {
+            background: get-icon('tick-left', $Zinc-300) no-repeat center;
+        }
+    }
+
+    &__number {
+        min-width: 30px;
+        height: 30px;
+        padding: 2px;
+        text-align: center;
+        @include _border-radius(6px);
+        @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-500);
+        cursor: pointer;
+
+        &:not(:last-child) {
+            margin-right: 10px;
+        }
+
+        &_active {
+            background-color: $Red-400;
+            color: $white;
+        }
+
+        &_dot {
+            cursor: default;
+        }
+    }
+
+    @media (max-width: $screen-md) {
+        //display: none;
+    }
+}
+
+//endregion

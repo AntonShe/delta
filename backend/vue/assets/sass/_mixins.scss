@@ -1,0 +1,80 @@
+@mixin placeholder($color, $font, $size, $line) {
+  color: $color;
+  font-family: $font, sans-serif;
+  font-size: $size;
+  line-height: $line;
+  top: 50%;
+  transform: translateY(-50%);  
+}
+
+@mixin placeholders($color, $font, $size, $line) {
+  &::-webkit-input-placeholder {
+    @include placeholder($color, $font, $size, $line);
+  }
+  &::-moz-placeholder {
+    @include placeholder($color, $font, $size, $line);
+  }
+  &::-ms-input-placeholder {
+    @include placeholder($color, $font, $size, $line);
+  }
+}
+
+@mixin bg-image() {
+  background-position: center;
+  background-size: cover;
+  background-repeat: no-repeat;
+}
+
+@mixin button($width, $height, $bg-color, $text-color, $hover-bg-color, $hover-text-color, $border, $border-hover) {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: $width;
+  height: $height;
+  background-color: $bg-color;
+  border-radius: 12px;
+  border: 1px solid $border;
+  color: $text-color;
+  font-family: $golos-500;
+  font-size: 15px;
+  line-height: 140%;
+  transition: .5s;
+  cursor: pointer;
+
+  &:hover {
+    background-color: $hover-bg-color;
+    color: $hover-text-color;
+    border: 1px solid $border-hover;
+  }
+}
+
+@mixin main-title($size: 40px, $height: 48px, $color: $purple) {
+  font-family: $loos-700;
+  font-size: $size;
+  font-weight: 700;
+  line-height: $height;
+  text-align: center;
+  color: $color;
+  text-transform: uppercase;
+}
+
+@mixin body-text($color: $black) {
+  font-family: $golos-400;
+  font-size: 15px;
+  line-height: 21px;
+  color: $color;
+}
+
+@mixin body-text-2($color: $black) {
+  font-family: $golos-500;
+  font-size: 15px;
+  line-height: 21px;
+  color: $color;
+}
+
+@mixin flex-block($wrap: wrap, $justify: center, $align: center) {
+  display: flex;
+  flex-wrap: $wrap;
+  justify-content: $justify;
+  align-items: $align;
+}

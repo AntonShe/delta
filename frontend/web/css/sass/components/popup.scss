@@ -1,0 +1,478 @@
+@keyframes errorShow {
+  from {
+    margin-top: -26px;
+    opacity: 0;
+  }
+
+  70% {
+    opacity: 0;
+  }
+
+  to {
+    margin-top: 5px;
+    opacity: 1;
+  }
+}
+
+//.b-tab {
+//  display: none;
+//}
+
+.b-nav-tab {
+  cursor: pointer;
+}
+
+li {
+  .b-nav-tab {
+    display: inline;
+  }
+}
+
+.b-tab.active {
+  display: block;
+}
+
+.b-tab.disabled {
+  display: none;
+}
+
+.popup {
+  //display: none;
+  width: 100vw;
+  height: 100vh;
+  position: fixed;
+  top: 0;
+  left: 0;
+  z-index: 10;
+  background: rgba(0, 0, 0, 0.1);
+  backdrop-filter: blur(2px);
+
+  &__overlay {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0px;
+    left: 0px;
+    z-index: 2;
+    cursor: pointer;
+  }
+
+  &__container {
+    width: 440px;
+    min-height: 262px;
+    position: absolute;
+    left: 50%;
+    top: 270px;
+    transform: translate(-50%, -5%);
+    background-color: $white;
+    @include _border-radius(20px);
+    box-shadow: 0 0 50px 5px rgba(0, 0, 0, 0.1);
+    z-index: 3;
+    overflow: hidden;
+
+    & .error-message {
+      display: none;
+      
+      &.active{
+        display: block;
+        animation: errorShow 0.3s linear forwards;
+      }
+    }
+
+    @media (max-width: $screen-sm-s) {
+      width: 100%;
+      height: 100%;
+      top: 0;
+      transform: none;
+      left: 0;
+      border-radius: 0;
+    }
+  }
+
+  &__header {
+    padding: 14px 24px;
+    background-color: $Red-25;
+    align-items: center;
+    @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+
+    &--desk.flex {
+      @media (max-width: $screen-sm-s) {
+        display: none;
+      }
+    }
+
+    &-logo {
+      padding: 10px;
+      display: flex;
+      justify-content: center;
+      background: #FFF7F4;
+
+      & img {
+        width: 138px;
+        height: 44px;
+      }
+    }
+  }
+
+  &__header-mobile-wrapper {
+    @include _typography-ext(fn, 16, 20, 600, ls, $Zinc-900);    
+    padding: 14px 14px 0 14px;
+    align-items: center;
+    display: flex;
+    gap: 4px;
+  }
+
+  &__header-mobile {
+    display: none;
+
+    @media (max-width: $screen-sm-s) {
+      display: block;
+    }
+  }
+
+  &__tabs {
+    padding: 10px 24px 0;
+
+    @media (max-width: $screen-sm-s) {
+      padding: 10px 0 0;
+    }
+
+    &-input {
+      text-align: center;
+      margin: 10px 24px 0 24px;
+
+      @media (max-width: $screen-sm-s) {
+        margin: 20px 15px 0 15px;
+      }
+    }
+  }
+
+  &__tab {
+    height: 44px;
+    width: 196px;
+    text-align: center;
+    @include _button-reset(12px 24px, bgc, unset);
+    border-bottom: 2px solid $Zinc-200;
+    border-radius: unset;
+    @include _typography-ext(fn, 14, 20, 600, ls, $Zinc-400);
+
+    &.active {
+      color: $Zinc-900;
+      border-bottom: 2px solid $Zinc-900;
+      border-radius: unset;
+    }
+
+    @media (max-width: $screen-sm-s) {
+      width: 50%;
+      padding: 12px 16px;
+    }
+  }
+
+  &__inputs-text {
+    @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-600);
+    margin: 0 24px;
+    padding-top: 10px;
+
+    @media (max-width: $screen-sm-s) {
+      margin: 0 15px;
+    }
+
+    a {
+      color: $Indigo-400;
+    }
+  }
+
+  &__input {
+    &-wrap {
+      position: relative;
+    }
+
+    &-btn {
+      @include _button-reset(0, bgc, b);
+      text-align: left;
+      @include _typography-ext(fn, 12, 16, 400, ls, $Zinc-400);
+    }
+
+    &-code.input {
+      display: inline-block;
+      padding-right: 8px;
+      width: 34px;
+      height: 44px;
+      border: 1px solid $Zinc-400;
+      -moz-appearance:textfield;
+      @include _border-radius(8px);
+
+      &:not(:last-child) {
+        margin-right: 6px;
+      }
+    }
+
+    &-code.input::-webkit-outer-spin-button,
+    &-code.input::-webkit-inner-spin-button {
+      -webkit-appearance: none;
+      margin: 0;
+    }
+
+  }
+
+  &__password {
+    
+    &-wrap {
+      position: relative;
+    }
+
+    &-button {
+      position: absolute;
+      top: 12px;
+      right: 9px;
+      width: 20px;
+      height: 20px;
+      @include _button-reset(0, bgc, b);
+
+      &.popup__password-button_on {
+        background: get-icon('eye-on', $Zinc-400) no-repeat center;
+      }
+
+      &.popup__password-button_off {
+        background: get-icon('eye-off', $Zinc-400) no-repeat center;
+      }
+    }
+  }
+
+  &__input-label {
+    @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-500);
+    line-height: 26px;
+    padding: 9px 12px;
+    position: absolute;
+    left: 0px;
+
+    & span {
+      color: $Rose-600;
+    }
+
+    &--hidden {
+      opacity: 0;
+    }
+  }
+
+  &__buttons {
+    padding: 24px;
+    justify-content: flex-end;
+    gap: 10px;
+
+    @media (max-width: $screen-sm-s) {
+      flex-direction: column-reverse;
+      align-items: center;
+      padding: 20px 15px 10px 15px;
+    }
+
+    .button-red {
+      height: 44px;
+      @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-900);
+
+      @media (max-width: $screen-sm-s) {
+        width: 100%;
+      }
+    }
+
+    .button-disable {
+      cursor: auto;
+    }
+
+    .button-disable,
+    .otherPages {
+      @media (max-width: $screen-sm-s) {
+        width: 100%;
+      }
+    }
+
+    .button-black {
+      &_size {
+        width: 222px;
+      }
+
+      @media (max-width: $screen-sm-s) {
+        margin-left: 0;
+        width: 100%;
+        margin-bottom: 10px;
+      }
+    }
+
+  }
+
+  &__info {
+    padding: 10px 24px 24px;
+    @include _typography-ext(fn, 12, 16, 400, ls, $Zinc-400);
+  }
+
+  &__text-verification {
+    margin: 10px 24px 0 24px;
+    padding-left: 26px;
+    background: get-icon('check', $Indigo-400) no-repeat left;
+    @include _typography-ext(fn, 12, 16, 600, ls, $Indigo-400);
+
+    @media (max-width: $screen-sm-s) {
+      margin: 10px 15px 0 15px;
+    }
+  }
+}
+
+.popup__link {
+  color: $Indigo-400;
+
+  &:hover {
+    color: $Indigo-600;
+  }
+}
+
+// popup-location
+.popup-location-container {
+  position: relative;
+  z-index: 9;
+}
+
+.popup-location {
+  background: none;
+  backdrop-filter: unset;
+}
+
+.popup-location__container {
+  width: calc(100% - 30px);
+  min-height: auto;
+  position: absolute;
+  top: 86px;
+  left: 50%;
+  background-color: $white;
+  border-radius: 20px;
+  transform: translateX(-50%);
+  box-shadow: 0 0 6px 1px rgba(0, 0, 0, 0.15);
+  z-index: 3;
+
+  @media (min-width: $tablet-width) {
+    width: 394px;
+    top: -84px;
+    left: 20px;
+    transform: none;
+  }
+
+  @media (min-width: $screen-xl) {
+    left: 50px;
+  }
+
+  &::after {
+    @media (min-width: $tablet-width) {
+      clip-path: polygon(0 0,100% 100%,0 100%);
+      position: absolute;
+      content: "";
+      width: 12px;
+      height: 12px;
+      top: -6px;
+      left: 30px;
+      transform: translate(-50%) rotate(135deg);
+      background-color: $Red-25;
+      box-shadow: 0 0 6px 12px rgba(0, 0, 0, 0.15);
+    }
+  }
+}
+
+.popup-location__header {
+  padding: 8px 24px;
+  border-radius: 20px 20px 0 0;
+  position: relative;
+}
+
+.popup-location__title {
+  font-size: 14px;
+  line-height: 20px;
+  font-weight: 400;
+}
+
+.popup-location__cross {
+  width: 20px;
+  height: 20px;
+  position: absolute;
+  top: 8px;
+  right: 10px;
+  background: get-icon('cross', $Zinc-400) no-repeat center;
+  transition: background .2s ease-in-out;
+  cursor: pointer;
+
+  &:hover {
+    background: get-icon('cross', $Zinc-900) no-repeat center;
+  }
+}
+
+.popup-location__body {
+  padding: 16px 24px;
+  @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-500);
+}
+
+.popup-location__buttons {
+  padding: 0 24px 24px;
+  gap: 10px;
+  justify-content: flex-end;
+}
+//
+
+//popup-cities
+.popup-cities {
+  &__input {
+    margin-bottom: 10px;
+  }
+}
+
+.popup-cities__body {
+  padding: 10px 15px;
+
+  @media (min-width: $tablet-width) {
+    padding: 10px 24px 24px 24px;
+  }
+}
+
+.popup-cities__list {
+  @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-900);
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  grid-template-rows: repeat(6, 36px);
+  column-gap: 10px;
+}
+
+.popup-cities__item {
+  padding: 5px 0 5px 16px;
+  border-radius: 8px;
+  cursor: pointer;
+
+  &:hover {
+    @media (min-width: $tablet-width) {
+      background-color: $Red-50;
+    }      
+  }
+}
+//
+
+#restorePass {
+  .popup__info {
+    padding: 10px 24px 0 24px;
+
+    @media (max-width: $screen-sm-s) {
+      padding: 10px 15px 0 15px;
+    }
+  }
+}
+
+#verify-code {
+  .error-message {
+    display: block;
+    text-align: center;
+  }
+}
+
+#modalTwo {
+  .popup__tabs-input {
+    text-align: center;
+  }
+}
+
+.disable {
+  //display: none;
+}

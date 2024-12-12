@@ -1,0 +1,28 @@
+.big-banner {
+
+    &__desktop {
+        display: none;
+
+        @media (min-width: $screen-xl) {
+            display: block;
+        }
+    }
+
+    &__table {
+        display: none;
+
+        @media (min-width: $screen-md) {
+            display: block;
+        }
+
+        @media (min-width: $screen-xl) {
+            display: none;
+        }
+    }
+
+    &__mobile {
+        @media (min-width: $screen-md) {
+            display: none;
+        }
+    }
+}

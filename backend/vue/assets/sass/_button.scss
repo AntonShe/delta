@@ -1,0 +1,38 @@
+.button {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 140px;
+  height: 40px;
+  border-radius: 5px;
+  border: 1px solid $gray;
+  background-color: $white;
+  color: $black;
+  transition: .3s;
+  cursor: pointer;
+
+  &:hover:not(.button_disabled) {
+    background-color: $lightgray;
+  }
+
+  &_bg-color {
+    &_red {
+      background-color: $red;
+    }
+  }
+
+  &_width {
+    &_auto {
+      width: auto;
+    }
+  }
+
+  &_flex-grow-1 {
+    flex-grow: 1;
+  }
+
+  &_disabled {
+    cursor: default !important;
+    opacity: .7;
+  }
+}

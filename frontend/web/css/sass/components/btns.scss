@@ -1,0 +1,197 @@
+.button-black {
+    height: 44px;
+    color: $white;
+
+    @include _button-reset(9px 16px, $Zinc-700, b);
+    @include _hover(bc, tc, bgi, $Zinc-900);
+}
+
+.button-black-big {
+    height: 56px;
+    color: $white;
+
+    @include _button-reset(16px 24px, $Zinc-700, b);
+    @include _typography-ext(fn, 18, 24, 600, ls, fc);
+    @include _hover(bc, tc, bgi, $Zinc-900);
+}
+
+.button-text {
+    color: $Zinc-900;
+
+    @include _button-reset(0, bgc, b);
+    @include _hover(bc, $Red-400, bgi, bgc);
+}
+
+.button-tocart {
+    height: 44px;
+    color: $Zinc-700;
+    font-weight: 600;
+
+    @include _button-reset(8px 29px, $Red-200, b);
+    @include _hover(bc, $Zinc-900, bgi, $Red-300);
+
+    &.loading {
+        position: relative;
+        color: $Zinc-500;
+        background-color: $Red-300;
+        @include _hover(bc, $Zinc-500, bgi, $Red-300);
+
+        &::before {
+            content: '';
+            position: absolute;
+            top: 26%;
+            right: 20%;
+            width: 25px;
+            height: 24px;
+            background-image: get-icon('loading', $Zinc-500);
+            background-repeat: no-repeat;
+            background-position: center;
+
+            @media (max-width: $screen-md) {
+                right: 10%;
+            }
+        }
+    }
+}
+
+.button-red {
+    width: max-content;
+
+    @include _typography-ext(fn, 14, 20, 700, ls, $Zinc-900);
+    @include _button-reset(8px 12px, $Red-50, b);
+    @include _hover(bc, tc, bgi, $Red-200);
+}
+
+.button-red-200 {
+    width: max-content;
+    @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-700);
+    @include _button-reset(9px 16px, $Red-200, b);
+    @include _hover(bc, tc, bgi, $Red-300);
+}
+
+.button-like {
+    padding: 10px;
+    position: absolute;
+    top: -10px;
+    right: -10px;
+    height: 52px;
+    background: white;
+    border-radius: 0 10px 0 30px;
+    z-index: 3;
+
+    @media (min-width: $screen-xl-l) {
+        &:hover:not(:focus) {
+            .button-like__tooltip {
+                display: block;
+            }
+        }
+    }
+}
+
+.button-like__tooltip {
+    @include _typography-ext(fn, 14, 20, 400, ls, $white);
+    padding: 5px 10px;
+    position: absolute;
+    top: -14px;
+    left: 24px;
+    background-color: $Zinc-500;
+    border-radius: 4px;
+    white-space: nowrap;
+    display: none;
+    box-shadow: 0 3px 8px rgba(45, 77, 108, 0.15);
+}
+
+.button-like__btn {
+    width: 32px;
+    height: 32px;
+    background: get-icon('like-card', $Zinc-900) no-repeat center/80%;
+    @include _button-reset(0, bgc, b);
+
+    &.button-like-active {
+        background: get-icon('like-card-active', $Zinc-900) no-repeat center/80%;
+    }
+}
+
+.button-disable {
+    color: $Zinc-400;
+    @include _button-reset(9px 16px, $Zinc-100, none);
+
+    &:hover:not(:focus-visible) {
+        color: $Zinc-400;
+        @include _button-reset(9px 16px, $Zinc-100, none);
+        cursor: default;
+    }
+}
+
+.link {
+    position: relative;
+    cursor: pointer;
+
+    transition-property: background-color, box-shadow, border, border-color, color, fill, stroke;
+    transition: .3s ease-in-out;
+}
+
+.button-swiper {
+    position: absolute;
+    top: -35px;
+    width: 30px;
+    height: 30px;
+    z-index: 2;
+    transition-property: background-color, color, box-shadow, transform;
+    transition: .2s ease-in-out;
+    cursor: pointer;
+
+    &-prev {
+        background: get-icon('arrow-left', $Zinc-900) no-repeat center;
+        right: 50px;
+
+        &.swiper-button-disabled {
+            background: get-icon('arrow-left', $Zinc-400) no-repeat center;
+        }
+    }
+
+    &-next {
+        background: get-icon('arrow-right', $Zinc-900) no-repeat center;
+        right: 0;
+
+        &.swiper-button-disabled {
+            background: get-icon('arrow-right', $Zinc-400) no-repeat center;
+        }
+    }
+
+    &:hover:not(.swiper-button-disabled) {
+        transform: scale(1.11);
+    }
+}
+
+.button-back {
+    width: 24px;
+    height: 24px;
+    min-width: 24px;
+    margin-right: 4px;
+    background: get-icon('tick-left', $Zinc-900) no-repeat center;
+    @include _button-reset(p, bgc, none);
+}
+
+.button-more {
+    margin-top: 10px;
+    background: get-icon('tick-down', $Zinc-500) no-repeat right;
+
+    &.button-text {
+        padding-right: 28px;
+        @include _typography-ext(fn, 14, 20, 600, ls, $Zinc-500);
+    }
+
+    &:hover {
+        background: get-icon('tick-down', $Red-400) no-repeat right;
+        color: $Red-400;
+    }
+
+    &.open {
+        background: get-icon('tick-up', $Zinc-500) no-repeat right;
+
+        &:hover {
+            background: get-icon('tick-up', $Red-400) no-repeat right;
+        }
+    }
+}

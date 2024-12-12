@@ -1,0 +1,19 @@
+PHP=/usr/bin/php
+APP=/var/www/deltabook/current/yii
+
+1   0   *   *   * $PHP $APP cron/update-products > update-products.txt
+1   1   *   *   * $PHP $APP cron/sitemap > /dev/null
+50  1   *   *   * $PHP $APP cron/update-users-manticore > update-series.txt
+0   1   *   *   * $PHP $APP cron/close-business-day > /dev/null
+0   2   *   *   * $PHP $APP cron/create-feeds > create-feeds.txt
+30  2   *   *   * $PHP $APP cron/update-products-manticore > /dev/null
+0   3   *   *   * $PHP $APP cron/update-points > /dev/null
+30  3   *   *   * $PHP $APP cron/move-photo > move-photo.txt
+0   4   *   *   * $PHP $APP cron/add-photo > add-photo.txt
+
+*/5    *   *   *   * $PHP $APP cron/update-status-payment > /dev/null
+*/10   *   *   *   * $PHP $APP cron/update-prices-and-counts > /dev/null
+*/10   *   *   *   * $PHP $APP cron/send-order > /dev/null
+*/30   *   *   *   * $PHP $APP cron/update-balance > /dev/null
+*/60   *   *   *   * $PHP $APP cron/update-order > /dev/null
+*/60   *   *   *   * $PHP $APP cron/reject-orders > reject-orders.txt

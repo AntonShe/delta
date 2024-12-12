@@ -1,0 +1,15 @@
+.form {
+  &__row{
+    display: flex;
+    align-items: center;
+  }
+
+  &__col{
+    flex-grow: 1;
+  }
+
+  &__select-container{
+    padding-top: 9px;
+    margin-bottom: 10px;
+  }
+}

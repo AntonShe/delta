@@ -1,0 +1,52 @@
+User-Agent: *
+Disallow: */search*
+Disallow: *?page*
+Disallow: */admin*
+Disallow: */cart*
+Disallow: *levels*
+Disallow: *ages*
+Disallow: *genres*
+Disallow: *publishingHouseId*
+Disallow: *words*
+Disallow: *parentId*
+Disallow: */profile*
+Disallow: *.pdf
+Allow: *.js
+Allow: *.css
+Host: https://deltabook.ru
+Sitemap: https://deltabook.ru/sitemap.xml
+
+
+User-Agent: Yandex
+Disallow: */search*
+Disallow: *?page*
+Disallow: */admin*
+Disallow: */cart*
+Disallow: *levels*
+Disallow: *ages*
+Disallow: *genres*
+Disallow: *publishingHouseId*
+Disallow: *words*
+Disallow: *parentId*
+Disallow: */profile*
+Disallow: *.pdf
+Allow: *.js
+Allow: *.css
+
+clean-param: utm&utm_content&utm_referrer&yadclid&utm_campaign&utm_term&utm_compaign&utm_medium&utm_source&utm_partner&page&ages&genres&words&parentId&publishingHouseId&levels
+
+User-Agent: Google
+Disallow: */search*
+Disallow: *?page*
+Disallow: */admin*
+Disallow: */cart*
+Disallow: *levels*
+Disallow: *ages*
+Disallow: *genres*
+Disallow: *publishingHouseId*
+Disallow: *words*
+Disallow: *parentId*
+Disallow: */profile*
+Disallow: *.pdf
+Allow: *.js
+Allow: *.css

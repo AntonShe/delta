@@ -1,0 +1,49 @@
+.share-btn__main-share {
+  align-items: center;
+  justify-content: space-between;
+  gap: 6px;
+  width: 100%;
+}
+
+.share-btn__share-text {
+  @include _typography-ext(fn, 16, 26, 400, ls, $Zinc-500);
+}
+
+.share-btn__share-btn {
+  @include _button-reset(p, bgc, b);
+  width: 30px;
+  height: 30px;
+
+  &-tg {
+    background: get-icon('telegramm-btn', #2F89CE) no-repeat center;
+    @include _hover(bc, tc, get-icon('telegramm-btn', #0073ca) no-repeat center, bgc);
+  }
+
+  &-vk {
+    background: get-icon('vk-btn', #7294C7) no-repeat center;
+    @include _hover(bc, tc, get-icon('vk-btn', #5489da) no-repeat center, bgc);
+  }
+
+  &-ok {
+    background: get-icon('ok-btn', #FF7700) no-repeat center;
+    @include _hover(bc, tc, get-icon('ok-btn', #e07313) no-repeat center, bgc);
+  }
+}
+
+.share-btn__tooltip {
+  display: none;
+}
+
+.share-btn__share-btn-link {
+  width: 30px;
+  height: 30px;
+  @include _button-reset(p, bgc, b);
+  position: relative;
+  margin-left: auto;
+  background: get-icon('link', $Zinc-500) no-repeat center;
+  @include _hover(bc, tc, get-icon('link', $Red-400) no-repeat center, bgc);
+
+  &:hover .share-btn__tooltip {
+    display: block;
+  }
+}

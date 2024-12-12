@@ -1,0 +1,215 @@
+.promotions-page {
+
+    &__breadcrumb {
+        display: flex;
+        margin-bottom: 20px;
+        list-style-type: none;
+        @include _typography-ext(fn, 14, 28, 400, ls, $Zinc-400);
+
+        @media (max-width: $screen-xl) {
+            display: none;
+        }
+    }
+
+    &__breadcrumb-item {
+        display: flex;
+        align-items: center;
+    }
+
+    &__breadcrumb-item+&__breadcrumb-item::before {
+        content: "";
+        display: block;
+        width: 16px;
+        height: 1px;
+        background-color: $Zinc-400;
+        margin: 0 6px;
+        transform: rotate(125deg);
+    }
+
+    &__breadcrumb-item--active {
+        color: $Zinc-600;
+    }
+
+    &__flex-block {
+        align-items: center;
+        margin-bottom: 20px;
+
+        @media (max-width: $screen-md) {
+            margin-bottom: 14px;
+        }
+    }
+
+    &__button-back {
+        margin: 0 4px 0 0;
+        display: none;
+
+        @media (max-width: $screen-md) {
+            display: block;
+        }
+    }
+
+    &__title {
+        @include _typography-ext(fn, 30, 36, 600, ls, $Zinc-900);
+        margin: 0;
+
+        @media (max-width: $screen-xl) {
+            @include _typography-ext(fn, 24, 32, 600, ls, $Zinc-900);
+        }
+
+        @media (max-width: $screen-md) {
+            @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+        }
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        list-style-type: none;
+    }
+
+    &__item {
+        margin-bottom: 30px;
+
+        &:last-child {
+            margin-bottom: 0;
+        }
+
+        @media (max-width: $screen-xl) {
+            margin-bottom: 20px;
+        }
+    }
+
+    &__promotion {
+        display: flex;
+        gap: 25px;
+        justify-content: space-between;
+        background: $Red-50;
+        @include _border-radius(20px);
+        max-height: 385px;
+        overflow: hidden;
+
+        @media (max-width: $screen-xl) {
+            gap: 18px;
+        }
+
+        @media (max-width: $screen-md) {
+            gap: 11px;
+            flex-direction: column;
+            align-items: center;
+            text-align: center;
+        }
+    }
+
+    &__graphics {
+        display: flex;
+        justify-content: center;
+        align-items: flex-end;
+        max-width: 60%;
+        overflow: hidden;
+
+        @media (max-width: $screen-xl) {
+            width: 49%;
+        }
+
+        @media (max-width: $screen-md) {
+            width: 100%;
+            max-width: 100%;
+            display: block;
+        }
+    }
+
+    &__text-block {
+        max-width: 660px;
+        padding: 60px 0 60px 60px;
+
+        @media (max-width: $screen-xl) {
+            padding: 30px 0 30px 30px;
+        }
+
+        @media (max-width: $screen-md) {
+            padding: 20px 16px 0;
+        }
+    }
+
+    &__name {
+        @include _typography-ext(fn, 36, 46, 600, ls, $black);
+        margin-bottom: 3px;
+
+        @media (max-width: $screen-xl) {
+            @include _typography-ext(fn, 24, 32, 600, ls, $black);
+        }
+
+        @media (max-width: $screen-md) {
+            margin-bottom: 6px;
+        }
+    }
+
+    &__description {
+        @include _typography-ext(fn, 20, 28, 600, ls, $black);
+
+        @media (max-width: $screen-xl) {
+            @include _typography-ext(fn, 18, 24, 600, ls, $black);
+        }
+    }
+
+    &__percent {
+        @include _typography-ext(fn, 36, 46, 600, ls, $black);
+        margin: 27px 0 35px;
+
+        @media (max-width: $screen-xl) {
+            @include _typography-ext(fn, 24, 32, 600, ls, $black);
+            margin: 45px 0 8px;
+        }
+
+        @media (max-width: $screen-md) {
+            margin: 6px 0 27px;
+        }
+    }
+
+    &__validity {
+        display: block;
+        @include _typography-ext(fn, 16, 26, 400, ls, $black);
+        margin-top: 14px;
+    }
+
+    &__image{
+        width: 100%;
+        height: 100%;
+        object-fit: cover;
+        object-position: left top;
+
+        &_tablet{
+            display: none;
+        }
+
+        &_mobile{
+            display: none;
+        }
+    }
+
+    @media (max-width: $screen-xl) {
+        &__image{
+            display: none;
+
+            &_tablet{
+                display: block;
+            }
+        }
+    }
+
+    @media (max-width: $screen-md) {
+        &__image{
+            &_tablet{
+                display: none;
+            }
+
+            &_mobile{
+                display: block;
+                max-height: 300px;
+                height: 100%;
+                max-width: 100%;
+                width: 100%;
+            }
+        }
+    }
+}

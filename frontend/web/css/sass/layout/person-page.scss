@@ -1,0 +1,207 @@
+.person-page {
+  display: flex;
+  justify-content: space-between;
+}
+
+.person-page__content {
+  margin-bottom: -20px;
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  width: 100%;
+
+  @media (min-width: $tablet-width) {
+    width: auto;
+    display: grid;
+    grid-template-areas:
+    "a b"
+    "a c";
+    gap: 0;
+    grid-template-rows: minmax(30px, 34%) auto;
+  }
+
+  @media (min-width: $screen-xxl) {
+    grid-template-rows: minmax(60px, 34%) auto;
+  }
+}
+
+.person-page__photo-wrapper {
+  overflow: hidden;
+  min-height: 343px;
+  height: 343px;
+  border-radius: 10px;
+
+  @media (min-width: $tablet-width) {
+    margin-right: 20px;
+    grid-area: a;
+    min-width: 106px;
+    min-height: 110px;
+    width: 106px;
+    height: 110px;
+  }
+
+  @media (min-width: $screen-xxl) {
+    min-width: 252px;
+    min-height: 262px;
+    width: 252px;
+    height: 262px;
+  }
+}
+
+.person-page__header {
+  gap: 10px;
+  order: -1;
+
+  @media (min-width: $tablet-width) {
+    gap: 6px;
+    grid-area: b;
+    order: unset;
+  }
+}
+
+.person-page__text-wrapper {
+  @media (min-width: $tablet-width) {
+    grid-area: c;
+    max-width: 796px;
+  }  
+}
+
+.person-page__link {
+  color: $Indigo-400;
+}
+
+.person-page__title {
+  @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+  text-align: center;
+
+  @media (min-width: $screen-xxl) {
+    @include _typography-ext(fn, 36, 46, 600, ls, $Zinc-900);
+  }
+}
+
+.person-page__title-rus {
+  @include _typography-ext(fn, 16, 26, 600, ls, $Zinc-500);
+
+  @media (min-width: $tablet-width) {
+    padding-bottom: 10px;
+  }
+
+  @media (min-width: $screen-xxl) {
+    @include _typography-ext(fn, 24, 32, 600, ls, $Zinc-500);  
+  }
+}
+
+.person-page__title-series {
+  @include _typography-ext(fn, 20, 24, 600, ls, $Zinc-900);
+
+  @media (min-width: $tablet-width) {
+    font-size: 30px;
+    line-height: 28px;
+  }
+}
+
+.person-page__publisher {
+  @include _typography-ext(fn, 14, 20, 400, ls, $Zinc-700);
+  margin-left: 38px;
+
+  @media (min-width: $tablet-width) {
+    margin-left: 36px;
+    margin-top: 6px;
+  }
+}
+
+.person-page__share {
+  display: none;
+
+  @media (min-width: $screen-xxl) {
+    display: block;
+  }
+}
+
+.person-page__photo-img {
+  object-fit: cover;
+  width: 100%;
+  height: 100%;
+  min-width: 100%;
+  min-height: 100%;
+
+  @media (min-width: $tablet-width) {
+    min-width: 106px;
+    min-height: 110px;    
+  }
+
+  @media (min-width: $screen-xxl) {
+    min-width: 252px;
+    min-height: 262px;    
+  }
+}
+
+.person-page__subheader {
+  display: flex;
+  justify-content: space-between;
+}
+
+.person-page__subtitle {
+  @include _typography-ext(fn, 20, 28, 600, ls, $Zinc-900);
+
+  @media (min-width: $screen-xxl) {
+    @include _typography-ext(fn, 30, 36, 600, ls, $Zinc-900);    
+  }  
+}
+
+.person-page__subshare {
+  display: flex;
+  justify-content: space-between;
+
+  @media (min-width: $tablet-width) {
+    justify-content: flex-end;
+  }
+
+  @media (min-width: $screen-xxl) {
+    display: none;
+  }
+}
+
+// themes
+.person-page__photo-wrapper_publisher {
+  height: 80px;
+  min-height: 80px;
+  border: 1px solid $Zinc-200;
+
+  @media (min-width: $tablet-width) {
+    min-width: 166px;
+    width: 166px;
+    height: 80px;
+    min-height: 80px;
+  }
+
+  @media (min-width: $screen-xxl) {
+    min-width: 252px;
+    width: 252px;
+    height: 80px;
+    min-height: 80px;
+  }
+}
+
+.person-page__photo-img_publisher {
+  object-fit: contain;
+  min-height: 80px;
+
+  @media (min-width: $tablet-width) {
+    min-width: 168px;
+    min-height: 80px;
+  }
+
+  @media (min-width: $screen-xxl) {
+    min-width: 250px;
+    min-height: 80px;    
+  }  
+}
+
+.person-page__content_series {
+  gap: 0;
+
+  @media (min-width: $screen-xxl) {
+    grid-template-rows: minmax(30px, 34%) auto;
+  }  
+}

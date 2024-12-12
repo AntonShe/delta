@@ -1,0 +1,115 @@
+.error-page {
+    display: flex;
+    justify-content: space-between;
+    gap: 100px;
+    padding-top: 184px;
+
+    @media (max-width: $screen-xl) {
+        justify-content: center;
+        gap: 20px;
+    }
+
+    @media (max-width: $screen-md-l) {
+        margin-bottom: 50px;
+        flex-direction: column-reverse;
+        align-items: center;
+    }
+
+    &__container {
+        height: auto;
+
+        @media (min-width: $tablet-width) {
+            margin-top: 50px;
+            width: 295px;
+        }
+
+        @media (min-width: $screen-xl) {
+            width: 38%;
+        }
+
+        @media (min-width: $screen-xxl) {
+            margin-top: 150px;
+            width: 30%;
+        }
+    }
+
+    &__title {
+        @include _typography-ext(fn, 66, 60, 600, ls, $Zinc-900);
+        font-family: $inter;
+        text-align: center;
+
+        @media (min-width: $tablet-width) {
+            @include _typography-ext(fn, 90, 88, 700, ls, $Zinc-900);
+            text-align: left;
+        }
+        
+        @media (min-width: $screen-xl-l) {
+            @include _typography-ext(fn, 140, 118, 700, ls, $Zinc-900);
+        }
+    }
+
+    &__text {
+        margin-top: 30px;
+        max-width: 442px;
+        font-size: 30px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 36px;
+        color: $Zinc-900;
+
+        @media (max-width: $screen-xl) {
+            margin-top: 20px;
+            font-size: 20px;
+            line-height: 28px;
+        }
+
+        @media (max-width: $screen-md-l) {
+            max-width: 100%;
+            text-align: center;
+        }
+    }
+
+    &__link {
+        margin-top: 30px;
+        display: inline-flex;
+        height: 56px;
+        padding: 16px;
+        justify-content: center;
+        align-items: center;
+        gap: 8px;
+        flex-shrink: 0;
+        font-size: 18px;
+        font-style: normal;
+        font-weight: 600;
+        line-height: 24px;
+        color: $Zinc-700;
+        border-radius: 8px;
+        background-color: $Red-200;
+
+        @media (max-width: $screen-md-l) {
+            margin-top: 20px;
+            width: 100%;
+        }
+
+        &:hover {
+            @media (min-width: $screen-xl) {
+                background-color: $Red-300;
+            }
+        }
+    }
+
+    &__image {
+        width: 100%;
+        height: fit-content;
+
+        @media (min-width: $tablet-width) {
+            margin-bottom: 50px;
+            max-width: 416px;
+        }
+
+        @media (min-width: $screen-xl) {
+            width: 60%;
+            max-width: 1068px;
+        }
+    }
+}

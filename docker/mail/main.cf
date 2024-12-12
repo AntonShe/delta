@@ -1,0 +1,7 @@
+smtpd_use_tls = no
+mynetworks = 172.17.0.0/16
+mydomain = labirint.ru
+mydestination = mydestination = $myhostname localhost.$mydomain
+#broken_sasl_auth_clients = no
+#smtpd_sasl_auth_enable = no
+#smtpd_recipient_restrictions =
